@@ -131,49 +131,6 @@ filtroGeneroSelect.addEventListener('change', (event) => {
 // Carrega os filmes ao carregar a página
 document.addEventListener('DOMContentLoaded', carregarFilmes);
 
-if (toggleMusicBtn && backgroundMusic) {
-    toggleMusicBtn.addEventListener('click', () => {
-        if (backgroundMusic.paused) {
-            backgroundMusic.play();
-            backgroundMusic.muted = false; // Desmuta ao reproduzir
-        } else {
-            backgroundMusic.pause();
-            backgroundMusic.muted = true; // Muta ao pausar
-        }
-    });
-
-    // Tentar tocar quando a página carregar, mas mutado
-    backgroundMusic.muted = true;
-    backgroundMusic.play().catch(e => console.log("Autoplay mutado bloqueado, mas não é um problema."));
-}
-
-if (backgroundMusic) { // Verifica se o elemento de áudio existe
-    // Define o volume inicial para um valor mais baixo (por exemplo, 0.2 para 20%)
-    backgroundMusic.volume = 0.5; // Ajuste este valor entre 0.0 e 1.0
-
-    // Se você tiver o botão de ligar/desligar a música:
-    if (toggleMusicBtn) {
-        toggleMusicBtn.addEventListener('click', () => {
-            if (backgroundMusic.paused) {
-                backgroundMusic.play();
-                backgroundMusic.muted = false; // Desmuta ao reproduzir, se estava mutado
-            } else {
-                backgroundMusic.pause();
-                backgroundMusic.muted = true; // Muta ao pausar, se não estava
-            }
-        });
-
-        // Tentar tocar quando a página carregar, mas mutado (para respeitar autoplay policies)
-        // O volume já foi definido acima
-        backgroundMusic.muted = true; // Começa mutado para poder dar autoplay
-        backgroundMusic.play().catch(e => console.log("Autoplay mutado bloqueado, mas não é um problema."));
-
-    } else {
-        // Você pode tentar reproduzir aqui, mas lembre-se das restrições do navegador.
-        // backgroundMusic.play().catch(e => console.log("Autoplay bloqueado. O usuário precisa interagir."));
-    }
-}
-
 // --- Event Listeners do Botão de Áudio ---
 
 if (backgroundMusic && toggleMusicBtn) {
